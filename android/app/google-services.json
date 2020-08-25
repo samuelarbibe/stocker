@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "299771402080",
+    "firebase_url": "https://auth-test-a84a0.firebaseio.com",
+    "project_id": "auth-test-a84a0",
+    "storage_bucket": "auth-test-a84a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299771402080:android:e45abe62869bbe7a1ef005",
+        "android_client_info": {
+          "package_name": "com.example.stocker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299771402080-ovjjs48up1n0d1s7ia8q2b71i0fto6f2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_6WvFJhWJkQtvKvAeaqn7hW1iTpPv4j8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299771402080-ovjjs48up1n0d1s7ia8q2b71i0fto6f2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
