@@ -53,7 +53,8 @@ class AlpacaService {
   }
 
   Future<dynamic> getWatchlists() async {
-    final watchlistResponse = await alpacaApi.getWatchlists();
+    final watchlistResponse = null;
+    // await alpacaApi.getWatchlists();
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -62,7 +63,8 @@ class AlpacaService {
   }
 
   Future<dynamic> getWatchlist(String id) async {
-    final watchlistResponse = await alpacaApi.getWatchlist(id);
+    final watchlistResponse = null;
+    // await alpacaApi.getWatchlist(id);
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -72,7 +74,8 @@ class AlpacaService {
 
   Future<dynamic> getPrimaryWatchlist() async {
     final String watchlistId = (await this.getWatchlists())[0]['id'];
-    final watchlistResponse = await alpacaApi.getWatchlist(watchlistId);
+    final watchlistResponse = null;
+    // await alpacaApi.getWatchlist(watchlistId);
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -87,8 +90,8 @@ class AlpacaService {
   }
 
   Future<dynamic> addToWatchlist(String watchlistId, String symbol) async {
-    final watchlistResponse =
-        await alpacaApi.addToWatchlist(watchlistId, symbol);
+    final watchlistResponse = null;
+    // await alpacaApi.addToWatchlist(watchlistId, symbol);
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -97,8 +100,8 @@ class AlpacaService {
   }
 
   Future<dynamic> removeFromWatchlist(String watchlistId, String symbol) async {
-    final watchlistResponse =
-        await alpacaApi.removeFromWatchlist(watchlistId, symbol);
+    final watchlistResponse = null;
+    // await alpacaApi.removeFromWatchlist(watchlistId, symbol);
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -107,7 +110,8 @@ class AlpacaService {
   }
 
   Future<Response> sell(String symbol) async {
-    final buyResponse = await alpacaApi.sellPosition(symbol);
+    final buyResponse = null;
+    // await alpacaApi.sellPosition(symbol);
     return buyResponse;
   }
 
@@ -124,7 +128,8 @@ class AlpacaService {
   }
 
   Future<dynamic> getPortfolioHistory() async {
-    final response = await alpacaApi.getPortfolioHistory();
+    final response = null;
+    // await alpacaApi.getPortfolioHistory();
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);

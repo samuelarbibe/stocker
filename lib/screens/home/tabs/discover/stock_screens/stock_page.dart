@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:flutter_show_more/flutter_show_more.dart';
 import 'package:stocker/models/position.dart';
 import 'package:stocker/models/time_span.dart';
@@ -340,12 +339,8 @@ class StockScreenState extends State<StockScreen>
           width: double.infinity,
           child: Hero(
             tag: widget.stock.image,
-            child: Image(
-              image: AdvancedNetworkImage(
-                widget.stock.image,
-                useDiskCache: true,
-                fallbackAssetImage: 'assets/images/no_image.png',
-              ),
+            child: Image.network(
+              widget.stock.image,
               fit: BoxFit.cover,
             ),
           ),

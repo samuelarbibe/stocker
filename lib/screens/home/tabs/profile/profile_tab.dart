@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:stocker/models/account.dart';
 import 'package:stocker/models/portfolio_history.dart';
 import 'package:stocker/models/position.dart';
@@ -255,10 +254,8 @@ class ProfilePageState extends State<ProfilePage> {
       padding: EdgeInsets.only(top: 30),
       child: CircleAvatar(
         radius: 60,
-        backgroundImage: AdvancedNetworkImage(
+        backgroundImage: NetworkImage(
           widget.user.image,
-          useDiskCache: true,
-          fallbackAssetImage: 'assets/images/no_image.png',
         ),
       ),
     );

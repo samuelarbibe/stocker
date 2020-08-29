@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:stocker/models/stock.dart';
 import 'package:stocker/screens/home/tabs/discover/stock_screens/buy_stock_page.dart';
 import 'package:stocker/services/service_handler.dart';
@@ -246,15 +245,12 @@ class StockPageSmallCardState extends State<StockPageSmallCard> {
     return AspectRatio(
       aspectRatio: 1.0,
       child: Container(
-          width: double.infinity,
-          child: Image(
-            image: AdvancedNetworkImage(
-              widget.stock.logo,
-              fallbackAssetImage: 'assets/images/no_image.png',
-              useDiskCache: true,
-            ),
-            fit: BoxFit.scaleDown,
-          )),
+        width: double.infinity,
+        child: Image.network(
+          widget.stock.logo,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }

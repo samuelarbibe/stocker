@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:stocker/models/stock.dart';
 import 'package:stocker/screens/home/tabs/discover/stock_screens/stock_page.dart';
 import 'package:stocker/utilities/colors.dart';
@@ -31,12 +30,8 @@ class LargeStockCard extends StatelessWidget {
               height: height,
               child: Hero(
                 tag: stock.image,
-                child: Image(
-                  image: AdvancedNetworkImage(
-                    stock.image,
-                    useDiskCache: true,
-                    fallbackAssetImage: 'assets/images/no_image.png',
-                  ),
+                child: Image.network(
+                  stock.image,
                   fit: BoxFit.cover,
                 ),
               ),

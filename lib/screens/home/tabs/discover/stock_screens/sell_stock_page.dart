@@ -2,7 +2,6 @@ import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
-import 'package:selection_picker/selection_item.dart';
 import 'package:stocker/models/position.dart';
 import 'package:stocker/services/service_handler.dart';
 import 'package:stocker/utilities/colors.dart';
@@ -201,14 +200,5 @@ class BuyPageState extends State<SellScreen> {
         ),
       ],
     );
-  }
-
-  List<SelectionItem> getDays() {
-    List<SelectionItem> days = [];
-    days.add(SelectionItem(name: "1", isSelected: false, identifier: 1));
-    days.add(SelectionItem(name: "2", isSelected: false, identifier: 2));
-    days.add(SelectionItem(name: "3", isSelected: false, identifier: 3));
-    days.add(SelectionItem(name: "Other", isSelected: false, identifier: 4));
-    return days;
   }
 }
