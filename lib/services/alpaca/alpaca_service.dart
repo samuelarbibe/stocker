@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:alpaca/alpaca.dart';
 import 'package:http/http.dart';
+import 'package:stocker/services/alpaca/alpaca-dart/lib/alpaca.dart';
 
 // https://alpaca.markets/docs/api-documentation/api-v2/
 
@@ -53,8 +53,7 @@ class AlpacaService {
   }
 
   Future<dynamic> getWatchlists() async {
-    final watchlistResponse = null;
-    // await alpacaApi.getWatchlists();
+    final watchlistResponse = await alpacaApi.getWatchlists();
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -63,8 +62,7 @@ class AlpacaService {
   }
 
   Future<dynamic> getWatchlist(String id) async {
-    final watchlistResponse = null;
-    // await alpacaApi.getWatchlist(id);
+    final watchlistResponse = await alpacaApi.getWatchlist(id);
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -74,8 +72,7 @@ class AlpacaService {
 
   Future<dynamic> getPrimaryWatchlist() async {
     final String watchlistId = (await this.getWatchlists())[0]['id'];
-    final watchlistResponse = null;
-    // await alpacaApi.getWatchlist(watchlistId);
+    final watchlistResponse = await alpacaApi.getWatchlist(watchlistId);
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -90,8 +87,8 @@ class AlpacaService {
   }
 
   Future<dynamic> addToWatchlist(String watchlistId, String symbol) async {
-    final watchlistResponse = null;
-    // await alpacaApi.addToWatchlist(watchlistId, symbol);
+    final watchlistResponse =
+        await alpacaApi.addToWatchlist(watchlistId, symbol);
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -100,8 +97,8 @@ class AlpacaService {
   }
 
   Future<dynamic> removeFromWatchlist(String watchlistId, String symbol) async {
-    final watchlistResponse = null;
-    // await alpacaApi.removeFromWatchlist(watchlistId, symbol);
+    final watchlistResponse =
+        await alpacaApi.removeFromWatchlist(watchlistId, symbol);
 
     if (watchlistResponse.statusCode == 200) {
       return jsonDecode(watchlistResponse.body);
@@ -110,8 +107,7 @@ class AlpacaService {
   }
 
   Future<Response> sell(String symbol) async {
-    final buyResponse = null;
-    // await alpacaApi.sellPosition(symbol);
+    final buyResponse = await alpacaApi.closePosition(symbol);
     return buyResponse;
   }
 
@@ -128,8 +124,7 @@ class AlpacaService {
   }
 
   Future<dynamic> getPortfolioHistory() async {
-    final response = null;
-    // await alpacaApi.getPortfolioHistory();
+    final response = await alpacaApi.getPortfolioHistory();
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
