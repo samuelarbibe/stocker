@@ -208,17 +208,16 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
   Widget buildLoginButton() {
     return ArgonButton(
       width: 350,
-      height: 60,
+      height: 56,
       minWidth: 100,
-      color: AppleColors.gray5,
+      color: AppleColors.gray6,
       roundLoadingShape: false,
-      borderRadius: 5,
+      borderRadius: 4,
       child: Text(
-        isRegister ? "REGISTER" : "LOGIN",
+        isRegister ? "Register" : "Login",
         style: TextStyle(
-          color: Colors.white70,
-          fontWeight: FontWeight.w700,
-          fontSize: 18,
+          color: AppleColors.white1,
+          fontSize: 24,
         ),
       ),
       loader: Container(

@@ -46,7 +46,7 @@ class MediumStockCardState extends State<MediumStockCard> {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                     image: NetworkImage(this.widget.imgDir),
                   ),
                 ),

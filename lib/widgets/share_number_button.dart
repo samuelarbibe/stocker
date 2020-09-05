@@ -26,7 +26,7 @@ class ShareNumberButton extends StatelessWidget {
           child: Text(
             value.toString(),
             style: TextStyle(
-                fontSize: isOther ? 15 : 30,
+                fontSize: isOther ? 13 : 30,
                 fontWeight: FontWeight.bold,
                 color:
                     selected == value ? AppleColors.white2 : AppleColors.gray5),

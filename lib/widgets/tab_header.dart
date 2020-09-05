@@ -43,7 +43,7 @@ class TabHeader extends StatelessWidget {
       height: 40,
       width: 40,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(20),
         child: Image.network(
           imageUrl,
           fit: BoxFit.cover,

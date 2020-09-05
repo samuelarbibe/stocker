@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:299771402080:android:e45abe62869bbe7a1ef005",
         "android_client_info": {
-          "package_name": "com.example.stocker"
+          "package_name": "com.samuelarbibe.stocker"
         }
       },
       "oauth_client": [

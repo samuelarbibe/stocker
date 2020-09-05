@@ -18,11 +18,11 @@ class DailyChange extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color accentColor =
-        percentage > 0 ? AppleColors.red : AppleColors.green;
+        percentage < 0.0 ? AppleColors.red : AppleColors.green;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        percentage > 0
+        percentage < 0.0
             ? Icon(
                 Icons.arrow_drop_down,
                 color: accentColor,

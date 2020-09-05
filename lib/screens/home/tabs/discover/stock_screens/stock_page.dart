@@ -109,6 +109,7 @@ class StockScreenState extends State<StockScreen>
     return Material(
       color: AppleColors.white1,
       child: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -121,16 +122,19 @@ class StockScreenState extends State<StockScreen>
             buildChart(),
             buildRecommendations(),
             Container(
-              padding: EdgeInsets.all(30),
+              margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
+              height: 56,
               child: RaisedButton(
-                padding: EdgeInsets.all(20),
-                color: AppleColors.blue,
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4.0),
+                ),
+                color: AppleColors.gray6,
                 child: Text(
-                  "BUY",
+                  "Buy This Stock",
                   style: TextStyle(
-                    color: Colors.white70,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
+                    color: AppleColors.white1,
+                    fontSize: 19,
                   ),
                 ),
                 onPressed: () => {
@@ -142,16 +146,20 @@ class StockScreenState extends State<StockScreen>
             ),
             position != null
                 ? Container(
-                    padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
+                    margin: EdgeInsets.fromLTRB(30, 0, 30, 30),
+                    height: 56,
                     child: RaisedButton(
-                      padding: EdgeInsets.all(20),
-                      color: AppleColors.red,
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          side: BorderSide(color: AppleColors.gray1, width: 2)),
+                      padding: EdgeInsets.all(15),
+                      color: AppleColors.white1,
                       child: Text(
-                        "SELL",
+                        "Sell My Position",
                         style: TextStyle(
-                          color: Colors.white70,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
+                          color: AppleColors.gray6,
+                          fontSize: 19,
                         ),
                       ),
                       onPressed: () => {

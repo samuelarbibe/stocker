@@ -98,12 +98,14 @@ class SmallCard extends StatelessWidget {
                 ),
                 Container(
                   child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         '${this.stock.symbol} | ${this.stock.quote.currentPrice} | ',
                         style: TextStyle(
                           color: AppleColors.gray1,
-                          fontSize: 13,
+                          fontSize: 11,
                           height: 1.0,
                         ),
                       ),
@@ -127,7 +129,7 @@ class SmallCard extends StatelessWidget {
         width: double.infinity,
         child: Image.network(
           stock.logo,
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
         ),
       ),
     );

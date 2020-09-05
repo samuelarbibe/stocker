@@ -223,15 +223,15 @@ class StockPageSmallCardState extends State<StockPageSmallCard> {
     );
   }
 
-  Container buildStockInfo() {
-    return Container(
+  Widget buildStockInfo() {
+    return FittedBox(
+      fit: BoxFit.fitWidth,
       child: Row(
         children: <Widget>[
           Text(
             '${widget.stock.symbol} | ${widget.stock.quote.currentPrice} | ',
             style: TextStyle(
               color: AppleColors.gray1,
-              fontSize: 13,
               height: 1.0,
             ),
           ),
@@ -248,7 +248,7 @@ class StockPageSmallCardState extends State<StockPageSmallCard> {
         width: double.infinity,
         child: Image.network(
           widget.stock.logo,
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
         ),
       ),
     );

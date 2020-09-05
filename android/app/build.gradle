@@ -44,7 +44,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.stocker"
+        applicationId "com.samuelarbibe.stocker"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()

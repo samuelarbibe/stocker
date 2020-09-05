@@ -23,7 +23,6 @@ class HomeState extends State<Home> {
   TextStyle textStyle = TextStyle(
     color: Colors.grey,
     fontSize: 13,
-    fontWeight: FontWeight.bold,
   );
 
   @override

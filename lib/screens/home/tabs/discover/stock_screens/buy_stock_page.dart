@@ -33,7 +33,7 @@ class BuyPageState extends State<BuyScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        padding: EdgeInsets.fromLTRB(30, 100, 30, 50),
+        padding: EdgeInsets.fromLTRB(30, 50, 30, 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,21 +134,18 @@ class BuyPageState extends State<BuyScreen> {
               ),
             ),
             Container(
-              width: 500,
-              height: 60,
               child: ArgonButton(
                 width: 350,
-                height: 60,
+                height: 56,
                 minWidth: 100,
-                color: AppleColors.gray5,
+                color: AppleColors.gray6,
                 roundLoadingShape: false,
                 borderRadius: 5,
                 child: Text(
-                  "CONFIRM",
+                  "Confirm Purchase",
                   style: TextStyle(
-                    color: Colors.white70,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
+                    color: AppleColors.white1,
+                    fontSize: 24,
                   ),
                 ),
                 loader: Container(
@@ -192,7 +189,7 @@ class BuyPageState extends State<BuyScreen> {
         throw Error();
       }
     } catch (err) {
-      print('Could not buy stock!: ' + err);
+      print('Could not buy stock!: ' + err.toString());
     }
   }
 
