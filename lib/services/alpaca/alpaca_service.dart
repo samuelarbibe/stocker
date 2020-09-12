@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:stocker/services/alpaca/alpaca-dart/lib/alpaca.dart';
+import 'alpaca-dart/lib/alpaca.dart';
 
 // https://alpaca.markets/docs/api-documentation/api-v2/
 
