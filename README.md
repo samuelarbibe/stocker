@@ -16,8 +16,8 @@ The users should be able to be comfortable to do as they wish, and learn from th
 [App Summary](docs/Stocker.pdf)
 
 ## Screenshots
-![Example screenshot](docs/screenshots/screenshot_1.png)
-![Example screenshot](docs/screenshots/screenshot_2.png)
+![Example screenshot](docs/screenshots/screenshot1.png)
+![Example screenshot](docs/screenshots/screenshot2.png)
 
 ## Technologies
 * Flutter - version 1.20
