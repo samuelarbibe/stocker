@@ -13,10 +13,11 @@ This project was inspired both by my curiosity and my lack of knowledge when it 
 The goal was to simplify stock marketing as much as possible - no complicated graphics, not alot of numbers and overwhelming amounts of raw data.
 The users should be able to be comfortable to do as they wish, and learn from their mistakes on the go.
 
-[App features](docs/project_book.pdf)
+[App Summary](docs/Stocker.pdf)
 
 ## Screenshots
-![Example screenshot](./screenshots/TMS_recording.gif)
+![Example screenshot](docs/screenshots/screenshot_1.png)
+![Example screenshot](docs/screenshots/screenshot_2.png)
 
 ## Technologies
 * Flutter - version 1.20
