@@ -1,6 +1,8 @@
 # Stocker
 > a simple stock exchange cross-platform app
 
+[Try it Out](https://auth-test-a84a0.web.app)
+
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
