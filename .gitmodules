@@ -1,0 +1,3 @@
+[submodule "lib/services/alpaca/alpaca-dart"]
+	path = lib/services/alpaca/alpaca-dart
+	url = https://github.com/samuelarbibe/alpaca-dart.git
