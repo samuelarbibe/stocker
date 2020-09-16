@@ -2,6 +2,7 @@ import 'package:stocker/models/portfolio_history.dart';
 import 'package:stocker/models/position.dart';
 import 'package:stocker/models/stock.dart';
 import 'package:stocker/models/stock_model.dart';
+import 'package:stocker/services/eod/eod_service.dart';
 import 'package:stocker/services/finhub/finhub_service.dart';
 import 'package:stocker/services/firebase/database/stock_database_service.dart';
 import 'package:stocker/services/service_handler.dart';
@@ -24,66 +25,85 @@ class StockProvider {
   }
 
   static Future<List<Stock>> getAllStocksFromDb() async {
-    List<StockModel> stockList = await StockDatabaseService().allStocksData;
-
-    return Future.wait(stockList.map(getStock));
+    return StockDatabaseService()
+        .allStocksData
+        .then((value) => Future.wait(value.map(getStock)))
+        .catchError((err) =>
+            throw Exception('Could not load all stocks from db: $err'));
   }
 
   static Future<List<Position>> getAllPositionStocks() async {
-    List<dynamic> positions = await ServiceHandler.getAlpaca().getPositions();
-    List<StockModel> stockModels = [];
+    return ServiceHandler.getAlpaca().getPositions().then((positions) async {
+      List<StockModel> stockModels =
+          positions.map((pos) => StockModel.fromPositionMap(pos)).toList();
 
-    positions.forEach((e) {
-      stockModels.add(StockModel.fromPositionMap(e));
-    });
+      return Future.wait(stockModels.map(getStock)).then((stocks) {
+        List<Position> stockPositions = [];
 
-    List<Stock> stocks =
-        await Future.wait(stockModels.map(getStock)).then((value) => value);
+        for (int i = 0; i < stocks.length; i++) {
+          stockPositions.add(Position.fromData(stocks[i], positions[i]));
+        }
 
-    List<Position> stockPositions = [];
-
-    for (int i = 0; i < stocks.length; i++) {
-      stockPositions.add(Position.fromData(stocks[i], positions[i]));
-    }
-
-    return stockPositions;
+        return stockPositions;
+      });
+    }).catchError((err) =>
+        throw Exception('Could not load all stocks from positions: $err'));
   }
 
   static Future<List<Stock>> getWatchlist() async {
-    dynamic watchlistsJson = await ServiceHandler.getAlpaca().getWatchlists();
-    dynamic watchlistJson =
-        await ServiceHandler.getAlpaca().getWatchlist(watchlistsJson[0]['id']);
+    return ServiceHandler.getAlpaca().getWatchlists().then((watchlists) {
+      if (watchlists.length == 0) {
+        throw Error();
+      }
+      return ServiceHandler.getAlpaca()
+          .getWatchlist(watchlists[0]['id'])
+          .then((watchlist) {
+        List<dynamic> watchlistAssets =
+            watchlist['assets'] as List<dynamic> ?? [];
 
-    List<dynamic> watchlist = watchlistJson['assets'] as List<dynamic> ?? [];
+        List<StockModel> stockModels = watchlistAssets
+            .map((asset) => StockModel.fromAssetMap(asset))
+            .toList();
 
-    List<StockModel> stockModels = [];
-
-    watchlist.forEach((e) {
-      stockModels.add(StockModel.fromAssetMap(e));
-    });
-
-    return Future.wait(stockModels.map(getStock));
+        return Future.wait(stockModels.map(getStock));
+      });
+    }).catchError((err) => throw Exception('Could not load watchlist: $err'));
   }
 
   static Future<List<PortfolioHistory>> getPotfolioHistory() async {
-    dynamic watchlistsJson =
-        await ServiceHandler.getAlpaca().getPortfolioHistory();
+    return ServiceHandler.getAlpaca()
+        .getPortfolioHistory()
+        .then((portfolioHistory) {
+      List<PortfolioHistory> history = [];
 
-    List<PortfolioHistory> history = [];
+      int length = portfolioHistory['timestamp'].length;
 
-    int length = watchlistsJson['timestamp'].length;
+      for (int i = 0; i < length; i++) {
+        history.add(
+          PortfolioHistory(
+            timestamp: portfolioHistory['timestamp'][i],
+            equity: portfolioHistory['equity'][i].toDouble(),
+            profitLoss: portfolioHistory['profit_loss'][i].toDouble(),
+            profitLossPct: portfolioHistory['profit_loss_pct'][i].toDouble(),
+          ),
+        );
+      }
 
-    for (int i = 0; i < length; i++) {
-      history.add(
-        PortfolioHistory(
-          timestamp: watchlistsJson['timestamp'][i],
-          equity: watchlistsJson['equity'][i].toDouble(),
-          profitLoss: watchlistsJson['profit_loss'][i].toDouble(),
-          profitLossPct: watchlistsJson['profit_loss_pct'][i].toDouble(),
-        ),
-      );
-    }
+      return history;
+    }).catchError(
+            (err) => throw Exception('Could not load portfolio history: $err'));
+  }
 
-    return history;
+  static Future<List<Stock>> searchStock(String query) async {
+    return EodService().searchStocks(query).then((results) {
+      if (results.length > 0) {
+        List<StockModel> stockModels = results
+            .map((result) => StockModel.fromSearchResult(result))
+            .toList();
+
+        return Future.wait(stockModels.map(getStock));
+      }
+      return [];
+    }).catchError(throw Exception('Could not load Query results'));
   }
 }

@@ -18,7 +18,7 @@ class FinhubService {
   FinhubService(this.symbol);
 
   Future<Profile> getProfile() async {
-    return await finhubWrapper.fetchProfile(symbol);
+    return finhubWrapper.fetchProfile(symbol);
   }
 
   Future<Quote> getQuote() async {
@@ -44,7 +44,8 @@ class FinhubWrapper {
         'https://finnhub.io/api/v1/quote?symbol=$symbol&token=$FINHUB_API_KEY');
 
     if (response.statusCode == 200) {
-      return Quote.fromJson(json.decode(response.body));
+      var data = json.decode(response.body);
+      return Quote.fromJson(data);
     } else {
       throw Exception('Could not load Quote for $symbol');
     }
@@ -55,7 +56,8 @@ class FinhubWrapper {
         'https://finnhub.io/api/v1/stock/profile2?symbol=$symbol&token=$FINHUB_API_KEY');
 
     if (response.statusCode == 200) {
-      return Profile.fromJson(json.decode(response.body));
+      var data = json.decode(response.body);
+      return Profile.fromJson(data);
     } else {
       throw new Exception('Could not load profile for symbol $symbol');
     }
@@ -66,7 +68,10 @@ class FinhubWrapper {
         'https://finnhub.io/api/v1/stock/recommendation?symbol=$symbol&token=$FINHUB_API_KEY');
 
     if (response.statusCode == 200) {
-      return Recommendation.fromJson(json.decode(response.body)[0]);
+      var data = json.decode(response.body);
+      if (data.length > 0) {
+        return Recommendation.fromJson(json.decode(response.body)[0]);
+      }
     } else {
       throw new Exception('Could not load recommendation for symbol $symbol');
     }

@@ -38,4 +38,14 @@ class StockModel {
       logo: null,
     );
   }
+
+  static StockModel fromSearchResult(dynamic result) {
+    return StockModel(
+      name: null,
+      description: null,
+      symbol: result['Code'],
+      image: null,
+      logo: null,
+    );
+  }
 }

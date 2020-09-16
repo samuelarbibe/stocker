@@ -1,0 +1,2 @@
+const EOD_API_KEY = '5f61f78b4181a2.78644967';
+const EOD_RESULT_LIMIT = 5;

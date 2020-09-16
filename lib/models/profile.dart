@@ -12,17 +12,11 @@ class Profile extends Stock {
 
   factory Profile.fromJson(Map<String, dynamic> json) {
     return Profile(
-      name: json['name'].toString().isEmpty ? 'Name' : json['name'],
-      symbol: json['ticker'].toString().isEmpty ? 'SYMBOL' : json['ticker'],
-      webUrl: json['weburl'].toString().isEmpty
-          ? 'http://notFound.com'
-          : json['weburl'],
-      logo: json['logo'].toString().isEmpty
-          ? 'https://www.florensia-online.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'
-          : json['logo'],
-      industry: json['finnhubIndustry'].toString().isEmpty
-          ? 'Industry'
-          : json['finnhubIndustry'],
-    );
+        name: json['name'] ?? 'No Name',
+        symbol: json['ticker'] ?? 'SYMBOL',
+        webUrl: json['weburl'] ?? 'http://notFound.com',
+        logo: json['logo'] ??
+            'https://www.florensia-online.com/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png',
+        industry: json['finnhubIndustry'] ?? 'Industry');
   }
 }
