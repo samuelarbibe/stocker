@@ -45,6 +45,7 @@ class HomeState extends State<Home> {
 
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
+        currentIndex: 2,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(

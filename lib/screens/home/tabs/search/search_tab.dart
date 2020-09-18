@@ -26,6 +26,7 @@ class _SearchState extends State<Search> {
     super.initState();
     loading = false;
     errorLoading = false;
+    results = [];
   }
 
   void searchStock(query) async {
@@ -36,6 +37,10 @@ class _SearchState extends State<Search> {
       });
 
       results = await StockProvider.searchStock(query);
+      if (results == null || results.length == 0) {
+        results = [];
+        throw Exception("No results found");
+      }
     } catch (err) {
       print(err);
       errorLoading = true;

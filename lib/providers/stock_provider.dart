@@ -21,7 +21,8 @@ class StockProvider {
       finhubService.getRecommendation()
     ]).then((values) {
       return Stock.fromData(stockModel, values[0], values[1], values[2]);
-    });
+    }).catchError((err) => throw Exception(
+        'Could not load stock data from finhub for ${stockModel.symbol}: $err'));
   }
 
   static Future<List<Stock>> getAllStocksFromDb() async {
@@ -103,7 +104,7 @@ class StockProvider {
 
         return Future.wait(stockModels.map(getStock));
       }
-      return [];
-    }).catchError(throw Exception('Could not load Query results'));
+    }).catchError(
+        (err) => throw Exception('Could not load Query results: $err'));
   }
 }

@@ -69,8 +69,8 @@ class FinhubWrapper {
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
-      if (data.length > 0) {
-        return Recommendation.fromJson(json.decode(response.body)[0]);
+      if (data != null && data.length > 0) {
+        return Recommendation.fromJson(data[0]);
       }
     } else {
       throw new Exception('Could not load recommendation for symbol $symbol');

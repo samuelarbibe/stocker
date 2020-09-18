@@ -29,6 +29,7 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
 
   bool passwordObscured;
   bool isRegister;
+  bool failed;
 
   String email;
   String fullName;
@@ -41,6 +42,7 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
     keyboardOpen = false;
     passwordObscured = true;
     isRegister = false;
+    failed = false;
 
     KeyboardVisibility.onChange.listen((bool visible) {
       setState(() {
@@ -65,7 +67,7 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
 
   void showPassword() async {
     setState(() {
-      passwordObscured = passwordObscured;
+      passwordObscured = !passwordObscured;
     });
   }
 
@@ -79,8 +81,6 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
 
   Future login() async {
     if (vaildateAndSave()) {
-      await Future.delayed(Duration(seconds: 2));
-
       try {
         String uid = await widget.auth.signIn(email, password);
         if (uid != null) {
@@ -88,6 +88,7 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
           widget.loginCallback();
         }
       } catch (e) {
+        loginFailed();
         print('login has failed');
       }
     }
@@ -95,7 +96,6 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
 
   Future register() async {
     if (vaildateAndSave()) {
-      await Future.delayed(Duration(seconds: 2));
       String uid = "";
       try {
         uid = await widget.auth.signUp(
@@ -103,6 +103,7 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
         print('user $uid has successfully signed up');
         login();
       } catch (e) {
+        loginFailed();
         print('sign up has failed');
       }
     }
@@ -110,6 +111,12 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
 
   Future delay(int timeInMilliseconds) async {
     Future.delayed(Duration(milliseconds: timeInMilliseconds), () => "1");
+  }
+
+  void loginFailed() {
+    setState(() {
+      failed = true;
+    });
   }
 
   void createAccount() {
@@ -155,6 +162,7 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
                   buildPasswordInput(),
                   isRegister ? buildConfirmPasswordInput() : Container(),
                   buildLoginButton(),
+                  failed ? buildLoginFailed() : Container(),
                   buildCreateAccountButton(),
                 ],
               ),
@@ -336,5 +344,12 @@ class LoginState extends State<Login> with TickerProviderStateMixin {
   Widget buildRegisterHeader() {
     return Text("Create Account",
         style: TextStyle(color: AppleColors.gray2, fontSize: 25.0));
+  }
+
+  Widget buildLoginFailed() {
+    return Text(
+      isRegister ? "Register Failed" : "Wrong Email or Password.",
+      style: TextStyle(color: AppleColors.red, fontSize: 15.0),
+    );
   }
 }
